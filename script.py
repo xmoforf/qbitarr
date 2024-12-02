@@ -34,12 +34,12 @@ if __name__ == "__main__":
 
     # Configure logging
     log_level = args.log_level.upper()
-    if logging.getLevelNamesMapping.get(log_level, None):
+    log_level_numeric = logging.getLevelNamesMapping().get(log_level, None)
+    if log_level_numeric:
+        logging.basicConfig(level=log_level)
+    else:
         raise QBitArrError(f"Invalid log level: {log_level}")
-    logging.basicConfig(level=log_level)
         
-    logging.basicConfig(level=numeric_level, format='%(asctime)s - %(levelname)s - %(message)s')
-
     host = args.host or input("Qbittorrent IP Address: ").strip()
     port = args.port or input("Qbittorrent Port: ").strip()
     username = args.username or input("Username: ").strip()
