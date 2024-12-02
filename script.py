@@ -4,24 +4,9 @@ from getpass import getpass
 
 import qbittorrentapi
 
-logging.basicConfig(level=logging.DEBUG)
-
 class QBitArrError(Exception):
     def __init__(self, logmsg):
         logging.exception(logmsg)
-
-class QBClient:
-    def __init__(self, **conn_info):
-        self.client = qbittorrentapi.Client(**conn_info)
-
-    def torrents(self):
-        for torrent in self.client.torrents_info():
-            yield torrent
-    
-    def trackers(self, infohash):
-        for tracker in self.client.torrents_trackers(infohash):
-            yield tracker
-
 
 if __name__ == "__main__":
     # Parse command-line arguments
@@ -47,6 +32,6 @@ if __name__ == "__main__":
 
 
     logging.info(f"Connecting to client at {host}:{port} username={username}")
-    qbc = QBClient(host=host, port=port, username=username, password=password)
-    print("qbittorrent-api client is qbc.")
-    print("Example:\nfor torrent in qbc.torrents():\n    print(torrent.name)\n")
+    qbc = qbittorrentapi.Client(host=host, port=port, username=username, password=password)
+    print("qbittorrent-api client is qbc\n")
+    print("Example:\n    for torrent in qbc.torrents_info():\n        print(f'{torrent.infohash_v1}: {torrent.name}')\n\n")
