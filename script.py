@@ -48,5 +48,5 @@ if __name__ == "__main__":
 
     logging.info(f"Connecting to client at {host}:{port} username={username}")
     qbc = QBClient(host=host, port=port, username=username, password=password)
-    for torrent in qbc.torrents():
-        print(torrent.name)
+    print("qbittorrent-api client is qbc.")
+    print("Example:\nfor torrent in qbc.torrents():\n    print(torrent.name)\n")
