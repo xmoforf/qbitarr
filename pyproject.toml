@@ -1,0 +1,9 @@
+[project]
+name = "qbitarr"
+version = "0.1.0"
+description = "Qbit tools"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "qbittorrent-api>=2024.12.71",
+]
